@@ -3,7 +3,6 @@
 #![allow(incomplete_features)]
 #![feature(trait_alias)]
 #![feature(min_type_alias_impl_trait)]
-#![feature(impl_trait_in_bindings)]
 #![feature(type_alias_impl_trait)]
 
 #[path = "../example_common.rs"]
@@ -16,8 +15,8 @@ use cortex_m_rt::entry;
 //use stm32f4::stm32f429 as pac;
 use embassy_stm32::dac::{Channel, Dac, Value};
 use stm32l4::stm32l4x5 as pac;
+use stm32l4xx_hal::prelude::*;
 use stm32l4xx_hal::rcc::PllSource;
-use stm32l4xx_hal::{prelude::*};
 
 #[entry]
 fn main() -> ! {
@@ -30,8 +29,7 @@ fn main() -> ! {
 
     // TRY the other clock configuration
     // let clocks = rcc.cfgr.freeze(&mut flash.acr);
-    rcc
-        .cfgr
+    rcc.cfgr
         .sysclk(80.mhz())
         .pclk1(80.mhz())
         .pclk2(80.mhz())

@@ -38,7 +38,6 @@ impl Timer {
     /// ``` no_run
     /// # #![feature(trait_alias)]
     /// # #![feature(min_type_alias_impl_trait)]
-    /// # #![feature(impl_trait_in_bindings)]
     /// # #![feature(type_alias_impl_trait)]
     /// #
     /// # fn foo() {}
@@ -81,7 +80,6 @@ impl Future for Timer {
 /// ``` no_run
 /// # #![feature(trait_alias)]
 /// # #![feature(min_type_alias_impl_trait)]
-/// # #![feature(impl_trait_in_bindings)]
 /// # #![feature(type_alias_impl_trait)]
 /// #
 /// use embassy::time::{Duration, Timer};
@@ -104,7 +102,6 @@ impl Future for Timer {
 /// ``` no_run
 /// # #![feature(trait_alias)]
 /// # #![feature(min_type_alias_impl_trait)]
-/// # #![feature(impl_trait_in_bindings)]
 /// # #![feature(type_alias_impl_trait)]
 /// #
 /// use embassy::time::{Duration, Ticker};

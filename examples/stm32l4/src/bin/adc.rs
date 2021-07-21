@@ -3,7 +3,6 @@
 #![allow(incomplete_features)]
 #![feature(trait_alias)]
 #![feature(min_type_alias_impl_trait)]
-#![feature(impl_trait_in_bindings)]
 #![feature(type_alias_impl_trait)]
 
 #[path = "../example_common.rs"]
