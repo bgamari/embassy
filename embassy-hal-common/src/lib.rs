@@ -7,7 +7,7 @@ pub mod interrupt;
 mod macros;
 pub mod peripheral;
 pub mod ring_buffer;
-pub mod usb;
+//pub mod usb;
 
 /// Low power blocking wait loop using WFE/SEV.
 pub fn low_power_wait_until(mut condition: impl FnMut() -> bool) {
