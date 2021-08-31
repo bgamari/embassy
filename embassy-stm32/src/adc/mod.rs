@@ -10,7 +10,9 @@ pub use _version::*;
 use crate::peripherals;
 
 pub(crate) mod sealed {
-    pub trait Instance {
+    use crate::rcc::RccPeripheral;
+
+    pub trait Instance: RccPeripheral {
         fn regs() -> &'static crate::pac::adc::Adc;
         fn common_regs() -> &'static crate::pac::adccommon::AdcCommon;
     }

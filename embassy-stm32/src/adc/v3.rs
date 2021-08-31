@@ -197,6 +197,10 @@ pub struct Adc<'d, T: Instance> {
 impl<'d, T: Instance> Adc<'d, T> {
     pub fn new(_peri: impl Unborrow<Target = T> + 'd, delay: &mut impl DelayUs<u32>) -> Self {
         unborrow!(_peri);
+
+        T::enable();
+        T::reset();
+
         unsafe {
             T::regs().cr().modify(|reg| {
                 #[cfg(not(adc_g0))]
