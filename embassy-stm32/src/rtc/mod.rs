@@ -42,7 +42,7 @@ pub(crate) enum WakeupPrescaler {
     Div16 = 16,
 }
 
-#[cfg(any(stm32wb, stm32f4, stm32l0, stm32g4))]
+#[cfg(any(stm32wb, stm32f4, stm32l0, stm32g4, stm32g0))]
 impl From<WakeupPrescaler> for crate::pac::rtc::vals::Wucksel {
     fn from(val: WakeupPrescaler) -> Self {
         use crate::pac::rtc::vals::Wucksel;
@@ -56,7 +56,7 @@ impl From<WakeupPrescaler> for crate::pac::rtc::vals::Wucksel {
     }
 }
 
-#[cfg(any(stm32wb, stm32f4, stm32l0, stm32g4))]
+#[cfg(any(stm32wb, stm32f4, stm32l0, stm32g4, stm32g0))]
 impl From<crate::pac::rtc::vals::Wucksel> for WakeupPrescaler {
     fn from(val: crate::pac::rtc::vals::Wucksel) -> Self {
         use crate::pac::rtc::vals::Wucksel;
@@ -412,6 +412,12 @@ impl Rtc {
                 #[cfg(any(rtc_v3, rtc_v3u5))]
                 regs.icsr().modify(|w| w.set_wutwf(false));
 
+                #[cfg(any(stm32g0))]
+                crate::pac::EXTI
+                    .rpr(0)
+                    .modify(|w| w.set_line(RTC::EXTI_WAKEUP_LINE, true));
+
+                #[cfg(not(any(stm32g0)))]
                 crate::pac::EXTI
                     .pr(0)
                     .modify(|w| w.set_line(RTC::EXTI_WAKEUP_LINE, true));
